@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        gap: 20px;
+        font-size: 25px;
+      }
+      
+      button{
+        padding: 10px 20px;
+        margin: 120px 0px 0px 0px;
+        border-radius: 3px;
+        background-color: green;
+        color: #FFF;
+        font-size: 18px;
+        border: none;
+        font-family: bold;
+      }
+      
+      .box-pokemon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        gap: 50px;
+      }
+      
+      .pokemon , .pokemon2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 150px;
+        height: 150px;
+      }
+      img{
+        width: 150px;
+        height: 150px;
+      }
+      
+    </style>
+</head>
+<body>
+  <div class="box-pokemon">
+    <div class="pokemon">
+    </div>
+    <div class="pokemon2"></div>
+  </div>
+  <button class="button" onclick="pokeBot()">BATALHAR</button>
+  <div class="resultado"></div>
+    
+  <script defer>
+    const pokemons = [
+      { nome: 'Charizard', elemento: 'Fogo', forca: 90 },
+      { nome: 'Pikachu', elemento: 'Trovão', forca: 77 },
+      { nome: 'Bulbassauro', elemento: 'Planta', forca: 75 },
+      { nome: 'Vaporeon', elemento: 'Água', forca: 80 },
+      { nome: 'Jolteon', elemento: 'Elétrico', forca: 78 },
+      { nome: 'Venusaur', elemento: 'Planta', forca: 85 },
+      { nome: 'Gyarados', elemento: 'Água', forca: 92 },
+      { nome: 'Alakazam', elemento: 'Psíquico', forca: 88 },
+      { nome: 'Arcanine', elemento: 'Fogo', forca: 91 }
+    ];
+
+    const pokemon = document.querySelector('.pokemon');
+    const pokemon2 = document.querySelector('.pokemon2');
+    const resultado = document.querySelector('.resultado');
+    const button = document.querySelector('.button');
+    
+    function pokeBot(){
+      
+      let aleatorioPoke = Math.floor(Math.random() * pokemons.length);
+      let aleatorioPoke2 = Math.floor(Math.random() * pokemons.length);
+      let caminhoaImg = `${pokemons[aleatorioPoke].nome}.png`;
+      let caminhoaImg2 = `${pokemons[aleatorioPoke2].nome}.png`;
+
+      pokemon.innerHTML = `<img src='pokeball.png'>`;
+
+      pokemon2.innerHTML = `<img src='pokeball.png'>`;
+
+      button.addEventListener('click', () =>{
+        pokemon.innerHTML = `<img src='${caminhoaImg}' alt='Descrição da imagem'> ${pokemons[aleatorioPoke].nome}<br><br> Força: ${pokemons[aleatorioPoke].forca}<br> ${pokemons[aleatorioPoke].elemento}`;
+
+        pokemon2.innerHTML = 
+        `<img src='${caminhoaImg2}' alt='Descrição da imagem'> ${pokemons[aleatorioPoke2].nome}<br><br> Força: ${pokemons[aleatorioPoke2].forca}<br> ${pokemons[aleatorioPoke2].elemento}`;
+        
+        if(pokemons[aleatorioPoke].forca > pokemons[aleatorioPoke2].forca){
+        resultado.innerHTML= `${pokemons[aleatorioPoke].nome} venceu!`;
+      } else if(pokemons[aleatorioPoke].forca === pokemons[aleatorioPoke2].forca){
+        resultado.innerHTML = `EMPATE`;
+      } else {
+        resultado.innerHTML= `${pokemons[aleatorioPoke2].nome} venceu!`;
+      }
+      })
+    }
+
+    pokeBot();
+  </script>
+</body>
+</html>
